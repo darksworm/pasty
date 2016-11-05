@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{{ url_for('lib', filename='highlightjs/styles/arta.css') }}">
+    <script src="{{ url_for('lib', filename='highlightjs/highlight.pack.min.js') }}"></script>
+    <title>Pasty</title>
+</head>
+<body>
+{% if not raw %}
+<a id="raw-btn">RAW</a>
+{% endif %}
+<pre><code class="{{language if language != 'none' else 'nohighlight'}}">{{text|safe}}</code>
+</pre>
+</body>
+{% if not raw %}
+<script>
+    hljs.initHighlightingOnLoad();
+    var btn = document.getElementById('raw-btn');
+    btn.href = '{{raw_url}}';
+</script>
+{% endif %}
+<style>
+    ::-webkit-scrollbar {
+        width: 0; /* remove scrollbar space */
+        background: transparent; /* optional: just make scrollbar invisible */
+    }
+    pre {
+        white-space: pre-wrap;
+        white-space: -moz-pre-wrap;
+        white-space: -pre-wrap;
+        white-space: -o-pre-wrap;
+        word-wrap: break-word;
+    }
+    {% if not raw %}
+    pre {
+        margin: 0 !important;
+    }
+
+    body {
+        background: #222;
+    }
+    {% endif %}
+    {% if not raw and language == 'none' %}
+    pre {
+        color: #9b9b9b;
+    }
+    {% endif %}
+    #raw-btn {
+        font-weight: 600;
+        height: 38px;
+        width: 75px;
+        position: absolute;
+        right: 1vw;
+        top: 1vh;
+        background: rgba(189, 189, 189, 0.2);
+        color: #9b9b9b;
+        border-radius: 5px;
+        text-decoration: none;
+        text-align: center;
+        line-height: 38px;
+    }
+</style>
+</html>

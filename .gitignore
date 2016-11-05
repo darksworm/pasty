@@ -1,0 +1,7 @@
+*.pyc
+*.iml
+.idea/
+.env
+lib/*
+static/*.css
+node_modules/

@@ -1,0 +1,24 @@
+{
+  "name": "pasty",
+  "description": "",
+  "main": "pasty.py",
+  "authors": [
+    "Ilmārs <darkswormlv@yahoo.com>"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "directory": "lib/",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "clipboard": "^1.5.15",
+    "highlightjs": "^9.8.0",
+    "envy": "darksworm/envy",
+    "hydra": "darksworm/hydra"
+  }
+}

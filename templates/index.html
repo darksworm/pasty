@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Pasty</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+    <script src="{{ url_for('static', filename='index.js') }}"></script>
+    <script src="{{ url_for('lib', filename='clipboard/dist/clipboard.min.js') }}"></script>
+    <script src="{{ url_for('lib', filename='highlightjs/highlight.pack.min.js') }}"></script>
+</head>
+<body>
+<div id="dragndrop">
+    <div id="rect">
+        <div id="main-text">
+            Paste/Drop or type text
+        </div>
+        <textarea autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"
+                  id='text-cont' title=""></textarea>
+    </div>
+    <div id="bottom-row">
+        <div id="lang-select">
+            <span>Syntax highlighting:</span>
+            <select id="lang-selector"></select>
+        </div>
+        <div id="submit">SUBMIT</div>
+    </div>
+</div>
+<div id="overlay" style="display:none"></div>
+<div id="copy" style="display:none">
+    <div>
+        <div id="copy-input"></div>
+        <div id="copy-button">COPY</div>
+    </div>
+</div>
+<div id="alert" style="display: none"></div>
+</body>
+</html>

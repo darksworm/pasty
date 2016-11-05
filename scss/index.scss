@@ -1,0 +1,212 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway');
+
+@mixin abs-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateY(-50%) translateX(-50%);
+}
+
+@mixin abs-center-x {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+@mixin abs-center-y {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+$bg-color: #262626;
+$border-color: rgba(189, 189, 189, 0.2);
+$txt-color: #9b9b9b;
+
+html,
+body,
+#dragndrop {
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+body {
+  background: $bg-color;
+  font-family: 'Raleway', sans-serif;
+  color: rgba(189, 189, 189, 0.35);
+  margin: 0 !important;
+}
+
+::-webkit-scrollbar {
+  width: 0; /* remove scrollbar space */
+  background: transparent; /* optional: just make scrollbar invisible */
+}
+
+#dragndrop {
+  #rect {
+    @include abs-center;
+    top: 47%;
+    border: calc(.5vh + .5vw) dashed $border-color;
+    height: 86%;
+    width: 92%;
+    text-align: center;
+
+    #main-text {
+      @include abs-center;
+      font-size: 4vw;
+      font-weight: 600;
+      width: 100%;
+    }
+
+    #text-cont {
+      background: inherit;
+      margin: 12px 12px;
+      padding-top: 5px;
+      text-align: left;
+      font-size: 14px;
+      font-weight: normal;
+      white-space: pre;
+      color: $txt-color;
+      width: 96%;
+      height: 96%;
+      overflow: scroll;
+
+      &:focus {
+        outline: none !important;
+        border: none !important;
+      }
+
+      &:hover {
+        cursor: text;
+      }
+    }
+  }
+
+  #bottom-row {
+    color: $txt-color;
+    position: absolute;
+    top: 93.5%;
+    width: 94%;
+    margin: 0 3%;
+
+    & > * {
+      display: inline-block;
+    }
+
+    #lang-select {
+      margin-top: 1%;
+      width: 50%;
+      float: left;
+
+      span {
+        padding-right: 2%;
+      }
+
+      select {
+        color: $txt-color;
+        background: #242424;
+      }
+    }
+
+    #submit {
+      float: right;
+      width: 10vw;
+      height: 4vh;
+      text-align: center;
+      line-height: 4vh;
+      background: $border-color;
+      border-radius: calc(.2vh + .2vw);
+      font-weight: 600;
+
+      &:hover {
+        background: #313131;
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+#copy {
+  @include abs-center;
+  min-width: 430px;
+  min-height: 90px;
+  width: 40vw;
+  height: 17vh;
+  background: #313131;
+  font-size: 2vw;
+  color: $bg-color;
+  border-radius: 1vh;
+  box-shadow: 0 0 15px 5px rgba(255, 255, 255, 0.25);
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+
+  & > div:first-child {
+    @include abs-center-y;
+    width: 100%;
+
+    #copy-input, #copy-button {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.25);
+      border: 1px solid $bg-color;
+      border-radius: 1vw;
+      padding: 1vh;
+    }
+
+    #copy-input {
+      border: 1px solid $bg-color;
+      border-radius: 1vw;
+      margin-left: 2vw;
+      -webkit-user-select: auto;
+      -moz-user-select: auto;
+      -ms-user-select: auto;
+      user-select: auto;
+      float: left;
+      min-width: 150px;
+      min-height: 15px;
+    }
+
+    #copy-button {
+      margin-right: 3vw;
+      float: right;
+      width: 8vw;
+      font-weight: 600;
+      cursor: pointer;
+      text-align: center;
+      min-width: 65px;
+      min-height: 17px;
+
+      &:hover {
+        background: rgba(255, 255, 255, 0.4);
+      }
+    }
+  }
+}
+
+#alert {
+  @include abs-center-x;
+  color: rgb(186, 186, 186);
+  bottom: -5px;
+  height: 13vh;
+  width: 50vw;
+  font-size: 3vw;
+  font-weight: 600;
+  line-height: 13vh;
+  background: rgb(191, 54, 12);
+  text-align: center;
+  border-radius: 1vh;
+  overflow: hidden;
+  transition: max-height 1.5s ease 0s;
+}
+
+#overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, .27);
+  top: 0;
+  left: 0;
+}
