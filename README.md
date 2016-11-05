@@ -5,10 +5,11 @@ Minimalistic pastebin clone written in python with flask
 ## Setup
 1.	make a copy of .env.example named .env
 2.	change variables in .env (they're self-explanatory)
-3.  npm install
-4.  bower install
-5.	create database, user and tables
-6.	run it like any other flask app
+3.      `npm install`
+4.      `bower install`
+5.      `gulp sass`
+6.	create database, user and tables
+7.	run it like any other flask app
 
 Database schema:
 ```
