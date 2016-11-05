@@ -89,4 +89,4 @@ def get_paste(idx):
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(port=Envy.get('LISTEN_PORT'))

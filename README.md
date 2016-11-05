@@ -16,6 +16,7 @@ Database schema:
 CREATE DATABASE paste DEFAULT CHARACTER SET UTF8;
 CREATE USER `paste`@`localhost` IDENTIFIED BY 'topsecret';
 GRANT ALL ON paste.* TO `paste`@`localhost`;
+USE paste;
 CREATE TABLE pastes(
         id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, 
         text MEDIUMTEXT NOT NULL, 
