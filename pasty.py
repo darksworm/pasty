@@ -1,5 +1,4 @@
 from flask import Flask, request, render_template
-import MySQLdb
 from flask import json
 from flask import send_from_directory
 from werkzeug.exceptions import NotFound
@@ -9,7 +8,7 @@ from lib.hydra.hydra import Hydra
 
 app = Flask(__name__)
 
-Envy.set_db(MySQLdb.connect, (
+Envy.set_db_connection_args((
     Envy.get('MYSQL_DATABASE_HOST'),
     Envy.get('MYSQL_DATABASE_USER'),
     Envy.get('MYSQL_DATABASE_PASSWORD'),
@@ -51,8 +50,7 @@ def add():
         return json.dumps(result), 400
 
     conn = Envy.get_db()
-    cur = conn.cursor()
-    cur.execute('''INSERT INTO pastes(text, language) VALUES(%s, %s)''', [text, language])
+    Envy.query('''INSERT INTO pastes(text, language) VALUES(%s, %s)''', [text, language])
     idx = Hydra.dehydrate(conn.insert_id())
     conn.commit()
 
@@ -82,9 +80,7 @@ def view(url_id):
 
 def get_paste(idx):
     db_id = Hydra.hydrate(idx)
-    conn = Envy.get_db()
-    cur = conn.cursor()
-    cur.execute('''SELECT text, date_created, language FROM pastes WHERE id =%s''', [db_id])
+    cur = Envy.query('''SELECT text, date_created, language FROM pastes WHERE id =%s''', [db_id])
     return cur.fetchone()
 
 
