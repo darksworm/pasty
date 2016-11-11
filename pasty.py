@@ -49,10 +49,10 @@ def add():
         result['error'] = "Invalid syntax highlighting specified!"
         return json.dumps(result), 400
 
-    conn = Envy.get_db()
     Envy.query('''INSERT INTO pastes(text, language) VALUES(%s, %s)''', [text, language])
-    idx = Hydra.dehydrate(conn.insert_id())
-    conn.commit()
+    db_handle = Envy.get_db()
+    idx = Hydra.dehydrate(db_handle.insert_id())
+    db_handle.commit()
 
     result['success'] = True
     result['id'] = idx
